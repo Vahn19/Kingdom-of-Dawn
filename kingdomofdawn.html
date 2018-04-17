@@ -407,6 +407,7 @@
 		document.getElementById("buy_wood").style.display="none";
 		document.getElementById("sell_wood").style.display="none";
 	}
+	//======================================================================================//
 	function buildforest(){
 		if(gold>=1000){
 		saw_mill_val += 1;
@@ -420,8 +421,12 @@
 		document.getElementById('gold').value=gold;
 		}
 		else
+		{
+		alertfail();
 		alert("Not enough Gold");
+		}
 	}
+	//======================================================================================//
 	function minwood(){
 		if(countwood_val>=50)
 		{
