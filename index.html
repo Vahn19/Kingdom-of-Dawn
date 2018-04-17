@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<style text="text/css">
+			body{
+				background-image: url("waterfall.gif");
+				height: 90%;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: cover;
+			}
+			#title{
+				background-color: rgba(0,0,0,0.7);
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-left:-320px;
+				margin-top:-180px;
+			}
+		</style>
+	</head>
+	<body onload="intro_screen(),ambient()">
+		<audio id="theme" autoplay loop>
+			<source src="SOUND\TownTheme.mp3" type="audio/ogg">
+		</audio>
+		<audio autoplay loop>
+			<source src="SOUND\4.mp3" type="audio/ogg">
+		</audio>
+		<audio id="frog">
+			<source src="SOUND\amb_frog_1.flac">
+		</audio>
+		<audio id="bird">
+			<source src="SOUND\amb_bird_1.flac">
+		</audio>
+		<audio id="bird2">
+			<source src="amb_bird_2.flac">
+		</audio>
+		<canvas id="title" width="640" height="360"></canvas>
+		<script type="text/javascript" src="rain.js"></script>
+		<script type="text/javascript">
+			var canvas = document.getElementById('title');
+			var context = canvas.getContext('2d');
+			//------------------------------------------------//
+			var gameStarted = false;
+			//------------------------------------------------//
+			//================================================//
+
+			//================================================//
+			document.body.addEventListener("keydown",function(event){
+				if(event.keyCode == 13){
+					location.href="kingdomofdawn.html";
+				}
+				else if(event.keyCode == 32){
+					location.href="credit.html";
+				}
+			});
+			//================================================//
+			var set,set2,set3;
+			var sound = document.getElementById("theme");
+			var frogambient = document.getElementById("frog");
+			var birdambient = document.getElementById("bird");
+			var bird2ambient = document.getElementById("bird2");
+
+			function themevol(){
+				sound.volume=0.7;
+			}
+			function ambientvol_bird(){
+				birdambient.volume=0.5;
+			}
+			function ambient(){
+				themevol();
+				ambientvol_bird();
+				ambientfrog();
+				ambientbird();
+				ambientbird2();
+			}
+			function ambientfrog(){
+				set = setInterval(playambientfrog, 4000);
+			}
+			function playambientfrog(){
+				frogambient.play();
+			}
+			function ambientbird(){
+				set2 = setInterval(playambientbird, 15000);
+			}
+			function playambientbird(){
+				birdambient.play();
+			}
+			function ambientbird2(){
+				set3 = setInterval(playambientbird2, 9000);
+			}
+			function playambientbird2(){
+				bird2ambient.play();
+			}
+			//================================================//
+			
+			function intro_screen(){
+				context.font = "50px Impact";
+				context.fillStyle = "#ef9207";
+				context.textAlign = "center";
+				context.fillText("Kingdom of Dawn", canvas.width/2, canvas.height/2);
+				
+				context.font = "20px Arial";
+				context.fillStyle = "#ffb03d"
+				context.fillText("Press Enter to Start", canvas.width/2, canvas.height/2 + 80);
+				context.font = "20px Arial";
+				context.fillText("Press Spacebar to view about", canvas.width/2, canvas.height/2 + 130);
+			}
+		</script>
+	</body>
+</html>

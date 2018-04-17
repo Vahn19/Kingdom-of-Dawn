@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<style>
+		body{
+			background-image: url("waterfall.gif");
+			height: 90%;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			}
+		div {
+			position: absolute;
+			top:150px;
+			left:200px;
+			right:200px;
+			padding: 20px 30px;
+			font-size: 20px;
+			text-align: Justify;
+			cursor: pointer;
+			outline: none;
+			color: #ef9207;
+			background-color: #000000;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 9px #999;
+			}
+		button {
+			position: absolute;
+			top: 570px;
+			left: 20px;
+			padding: 10px 20px;
+			font-size: 20px;
+			text-align: center;
+			cursor: pointer;
+			outline: none;
+			color: #ef9207;
+			background-color: #000000;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 9px #999;
+			}
+		button:hover {background-color: #ef9207;
+			color: #000000;}
+		button:active {
+			background-color: #ef9207;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+		</style>
+	</head>
+	<body onload="loadscreen()">
+		<audio autoplay loop>
+			<source src="SOUND\4.mp3" type="audio/ogg">
+		</audio>
+		<div id="credit" onclick="titlescreen()"></div>
+		<a href="index.html">
+		<button>Title Screen</button>
+		</a>
+		<script>
+		var XMLHttpRequestObject = false;  
+         if (window.XMLHttpRequest) {  
+          XMLHttpRequestObject = new XMLHttpRequest(); 
+         } 
+         else if (window.ActiveXObject) {  
+          XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP"); 
+          } 
+       
+         function getData(dataSource, divID) { 
+          if(XMLHttpRequestObject) { 
+           var obj = document.getElementById(divID);  
+           XMLHttpRequestObject.open("GET", dataSource);  
+
+           XMLHttpRequestObject.onreadystatechange = function(){ 
+            if (XMLHttpRequestObject.readyState == 4 && XMLHttpRequestObject.status == 200){  
+             obj.innerHTML = XMLHttpRequestObject.responseText;  
+            } 
+           }  
+           XMLHttpRequestObject.send(null);  
+          } 
+         }
+		
+		function loadscreen(){
+			getData('credits.txt','credit');
+		}
+		</script>
+	</body>
+</html>

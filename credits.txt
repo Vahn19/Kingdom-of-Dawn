@@ -1,0 +1,4 @@
+Kingdom of Dawn is a project of the final exam which is implementing author's passion in game,
+then trying to achieve becoming a game developer starting with this chance making
+a simple web game. Big Thanks to God and our beloved lecturer Mr. Tjong Wan Sen that give us a chance to
+implement our passion and our study program, Information Technology in this beloved President University

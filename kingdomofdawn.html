@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+			body{
+				background-image: url("waterfall.gif");
+				height: 90%;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: cover;
+			}
+			
+			.bar {
+				position: absolute;
+				top: 320px;
+				left: 570px;
+				width: 10px;
+				height: 40px;
+				background: #ef9207;
+				transition-property: width;
+			}
+			
+			button {
+			  position: absolute;
+			  padding: 10px 20px;
+			  font-size: 20px;
+			  text-align: center;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			button:hover {background-color: #ef9207;
+			 color: #000000;}
+			button:active {
+			  background-color: #ef9207;
+			  box-shadow: 0 5px #666;
+			  transform: translateY(4px);
+			}
+			
+			.status {
+			  top:20px;
+			  left: 20px;
+			}
+            .travel {
+			  top:80px;
+			  left: 20px;
+			}
+            .towncenter {
+			  top:20px;
+			  left: 200px;
+			}
+			.market {
+			  top:20px;
+			  left: 370px;
+			}
+			.forest {
+			  top:20px;
+			  left: 490px;
+			}
+			.forest_build{
+				top:320px;
+				left:200px;
+			}
+			.chop{
+				top: 400px;
+				left: 570px;
+			}
+			.pluswoodbutton{
+				top:320px;
+				left:380px;
+			}
+			.minwoodbutton{
+				top: 320px;
+				left: 200px;
+			}
+			.buywood{
+				top: 320px;
+				left: 450px;
+			}
+			.sellwood{
+				top: 320px;
+				left: 600px;
+			}
+
+			.screen {
+			  position: absolute;
+			  top:80px;
+			  left: 200px;
+			  padding: 4px 10px;
+			  cursor: pointer;
+			  outline: none;
+			  color: #000000;
+			  background-image: url('town_center_clear.gif');
+			  background-attachment:relative;
+			  background-repeat: no-repeat;
+			  height: 32%;
+			  width: 45%;
+			  border: solid;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.screen2 {
+			  position: absolute;
+			  top:80px;
+			  left: 200px;
+			  padding: 105px 315px;
+			  cursor: pointer;
+			  outline: none;
+			  color: #000000;
+			  background-image: url('market.gif');
+			  background-attachment:relative;
+			  background-position:
+			  background-repeat: no-repeat;
+			  background-size:100% 100%;
+			  border: solid;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.sawmill {
+			  position: absolute;
+			  top:320px;
+			  left:390px;
+			  padding: 10px 21px;
+			  font-size: 20px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.sawmill_product {
+			  position: absolute;
+			  top:400px;
+			  left:200px;
+			  padding: 10px 21px;
+			  font-size: 20px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.countwood {
+			  position: absolute;
+			  top:320px;
+			  left:260px;
+			  padding: 10px 21px;
+			  font-size: 20px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.time {
+			  position: absolute;
+			  top:570px;
+			  left:20px;
+			  padding: 11px 21px;
+			  font-size: 20px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.table_set {
+			  position: absolute;
+			  top:20px;
+			  left:1000px;
+			  padding: 11px 21px;
+			  font-size: 12px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #000000;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 10px;
+			  box-shadow: 0 9px #999;
+			}
+			
+			.info {
+			  position: absolute;
+			  top:570px;
+			  left:1110px;
+			  padding: 10px 21px;
+			  font-size: 20px;
+			  text-align: justify;
+			  cursor: pointer;
+			  outline: none;
+			  color: #ef9207;
+			  background-color: #000000;
+			  border: none;
+			  border-radius: 5px;
+			  box-shadow: 0 9px #999;
+			}
+</style>
+</head>
+<body onload="startTime(),update(),upline()">
+
+<button class="status" id="stats" onclick="status()">Status</button>
+	<div class="table-set">
+	<table border="1" align="center" class="table_set">
+			<tbody align="center">
+				<tr>
+					<th style="cursor:not-allowed;background-color:#ef9207"> METALS </th>
+					<th style="cursor:not-allowed;background-color:#ef9207"> GOLD </th>
+					<th style="cursor:not-allowed;background-color:#ef9207"> STONE </th>
+					<th style="cursor:not-allowed;background-color:#ef9207"> WOOD </th>
+				<tr>
+				<tr>
+					<th>
+						<div id="input_div">
+							<input type="text" size="5" readonly="true" value="0" style="text-align:center;background-color:yellow;cursor:not-allowed" id="steel">
+						</div>
+					</th>
+					<th>
+						<div id="input_div">
+							<input type="text" size="5" readonly="true" value="2000" style="text-align:center;background-color:yellow;cursor:not-allowed" id="gold">
+						</div>
+					</th>
+					<th>
+						<div id="input_div">
+							<input type="text" size="5" readonly="true" value="0" style="text-align:center;background-color:yellow;cursor:not-allowed" id="stone">
+						</div>
+					</th>
+					<th>
+						<div id="input_div">
+							<input type="text" size="5" readonly="true" value="0" style="text-align:center;background-color:yellow;cursor:not-allowed" id="wood">
+						</div>
+					</th>
+				</tr>
+			</tbody>
+		<table>
+	</div>
+<button class="travel" id="travs" onclick="travel()">Travel</button>
+	<button class="towncenter" id="twncntr" style="display:none" onclick="gotown()">Town Center</button>
+	
+	<button class="market" id="mrkt" style="display:none" onclick="gomarket()">Market</button>
+		<button class="minwoodbutton" onclick="minwood()" id="minwoodbutton" style="display:none">-</button>
+			<div class="countwood" id="count_wood" style="display:none">
+				<input type="text" size="5" readonly="true" value="0" id="countwood_val" style="text-align:center;background-color:orange;cursor:not-allowed">
+			</div>
+			<button class="pluswoodbutton" onclick="pluswood()" id="pluswoodbutton" style="display:none">+</button>
+			<button class="sellwood" id="sell_wood" style="display:none" onclick="sellwood()">Sell Wood</button>
+			<button class="buywood" id="buy_wood" style="display:none" onclick="buywood()">Buy Wood</button>
+		
+	<button class="forest" id="frst" style="display:none" onclick="goforest()">Forest</button>
+	<button class="forest_build" id="frstbld" style="display:none" onclick="buildforest()">Build Saw Mill</button>
+		<div class="sawmill" id="saw_mill" style="display:none">
+			<input type="text" size="5" readonly="true" value="0" style="text-align:center;background-color:orange;cursor:not-allowed" id="saw_mill_val"></input>
+		</div>
+	<div class="sawmill_product" id="saw_mill_pro" style="display:none;"></div>
+	<div class="bar" id="loadingbar" style="display:none"></div>
+	<button class="chop" id="chopwood" style="display:none" onclick="loading()">Get Wood</button>
+	
+	<div class="info">Project in development</div>
+		
+<div class="time" id="clock"></div>
+
+<div class="screen" id="scrn" style="display:none;"></div>
+<div class="screen2" id="scrn2" style="display:none;"></div>
+
+<audio autoplay>
+	<source src="SOUND\UI\load.wav">
+</audio>
+<audio id="alertneg">
+	<source src="SOUND\UI\negative.wav">
+</audio>
+<audio id="click">
+	<source src="SOUND\UI\switch33.wav">
+</audio>
+<audio id="coin">
+	<source src="SOUND\UI\coin.wav">
+</audio>
+<audio id="chop">
+	<source src="SOUND\UI\chop.flac">
+</audio>
+<audio id="buywood">
+	<source src="SOUND\UI\Moving Wood.wav">
+<audio>
+<script>
+	//=============================================//	
+	var setchop;
+	
+	function setplaychop(){
+		setchop = setTimeout(playchop, 3500);
+	}
+	
+	function alertfail(){
+		document.getElementById("alertneg").play();
+	}
+	function buttonclick(){
+		document.getElementById("click").play();
+	}
+	function buysound(){
+		document.getElementById("coin").play();
+	}
+	function playchop(){
+		document.getElementById("chop").play();
+	}
+	function soundbuywood(){
+		document.getElementById("buywood").play();
+	}
+	//=============================================//
+	var wood = 0;
+	var gold = 2000;
+	var saw_mill_val = 0;
+	var woodproduct = saw_mill_val * 50;
+	var countwood_val = 0;
+	
+	function status(){
+	travel();
+		buttonclick();
+    	document.getElementById("twncntr").style.display="none";
+		document.getElementById("mrkt").style.display="none";
+		document.getElementById("frst").style.display="none";
+		document.getElementById("scrn").style.display="none";
+		document.getElementById("scrn2").style.display="none";
+    }
+    function travel(){
+		buttonclick();
+		document.getElementById("scrn").style.display="none";
+		document.getElementById("scrn2").style.display="none";
+    	document.getElementById("twncntr").style.display="block";
+		document.getElementById("mrkt").style.display="block";
+		document.getElementById("frst").style.display="block";
+		document.getElementById("frstbld").style.display="none";
+		document.getElementById("saw_mill").style.display="none";
+		document.getElementById("saw_mill_pro").style.display="none";
+		document.getElementById("loadingbar").style.display="none";
+		document.getElementById("chopwood").style.display="none";
+		document.getElementById("minwoodbutton").style.display="none";
+		document.getElementById("count_wood").style.display="none";
+		document.getElementById("pluswoodbutton").style.display="none";
+		document.getElementById("buy_wood").style.display="none";
+		document.getElementById("sell_wood").style.display="none";
+		
+    }
+	function gotown(){
+	buttonclick();
+	goforest();
+		document.getElementById("scrn").style.display="block";
+		document.getElementById("scrn2").style.display="none";
+		document.getElementById("frstbld").style.display="none";
+		document.getElementById("saw_mill").style.display="none";
+		document.getElementById("saw_mill_pro").style.display="none";
+		document.getElementById("loadingbar").style.display="none";
+		document.getElementById("chopwood").style.display="none";
+		document.getElementById("minwoodbutton").style.display="none";
+		document.getElementById("countwood").style.display="none";
+		document.getElementById("pluswoodbutton").style.display="none";
+	}
+	function gomarket(){
+	buttonclick();
+		document.getElementById("scrn").style.display="none";
+		document.getElementById("scrn2").style.display="block";
+		document.getElementById("scrn2").style.backgroundImage = "url('market.gif')";
+		document.getElementById("minwoodbutton").style.display="block";
+		document.getElementById("count_wood").style.display="block";
+		document.getElementById("pluswoodbutton").style.display="block";
+		document.getElementById("buy_wood").style.display="block";
+		document.getElementById("sell_wood").style.display="block";
+		document.getElementById("frstbld").style.display="none";
+		document.getElementById("saw_mill").style.display="none";
+		document.getElementById("saw_mill_pro").style.display="none";
+		document.getElementById("loadingbar").style.display="none";
+		document.getElementById("chopwood").style.display="none";
+	}
+	function goforest(){
+	buttonclick();
+		document.getElementById("scrn").style.display="none";
+		document.getElementById("scrn2").style.display="block";
+		document.getElementById("scrn2").style.backgroundImage = "url('Forest.gif')";
+		document.getElementById("frstbld").style.display="block";
+		document.getElementById("saw_mill").style.display="block";
+		document.getElementById("saw_mill_pro").style.display="block";
+		document.getElementById("loadingbar").style.display="block";
+		document.getElementById("chopwood").style.display="block";
+		document.getElementById("minwoodbutton").style.display="none";
+		document.getElementById("count_wood").style.display="none";
+		document.getElementById("pluswoodbutton").style.display="none";
+		document.getElementById("buy_wood").style.display="none";
+		document.getElementById("sell_wood").style.display="none";
+	}
+	function buildforest(){
+		if(gold>=1000){
+		saw_mill_val += 1;
+		var sawdaily = "Wood Production Rate "
+		var sec = "/minute"
+		woodproduct = saw_mill_val * 50;
+		wood += woodproduct;
+		gold-=1000;
+		document.getElementById("saw_mill_val").value=saw_mill_val; 
+		document.getElementById("saw_mill_pro").innerHTML = sawdaily + woodproduct + sec;
+		document.getElementById('gold').value=gold;
+		}
+		else
+		alert("Not enough Gold");
+	}
+	function minwood(){
+		if(countwood_val>=50)
+		{
+		countwood_val -= 50;
+		document.getElementById('countwood_val').value=countwood_val;
+		}
+	}
+	function pluswood(){
+		if(countwood_val>=0)
+		{
+		countwood_val += 50;
+		document.getElementById('countwood_val').value=countwood_val;
+		}
+	}
+	function buywood(){
+		if(gold >= countwood_val*10){
+		soundbuywood();
+		wood += countwood_val;
+		gold -= 10*countwood_val;
+		document.getElementById("wood").value = wood;
+		document.getElementById("gold").value = gold;
+		}
+		else{
+		alertfail();
+		alert("Not enough gold");
+		}
+	}
+	function sellwood(){
+		if(wood >= countwood_val){
+		wood -= countwood_val;
+		gold += 5*countwood_val;
+		document.getElementById("wood").value = wood;
+		document.getElementById("gold").value = gold;
+		buysound();
+		}
+		else{
+		alertfail();
+		alert("You don't have anymore wood");
+		}
+	}
+	//=============================================================//
+	function startTime() {
+					var today = new Date();
+					var game = "Game Time  "
+					var h = today.getHours();
+					var m = today.getMinutes();
+					var s = today.getSeconds();
+					m = checkTime(m);
+					s = checkTime(s);
+					document.getElementById('clock').innerHTML =
+					game + h + ":" + m + ":" + s;
+					var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+				if (i < 10) {i = "0" + i};
+					return i;
+	}
+	//=============================================================//
+	var up;
+	var set;
+	function upline(){
+		up = setInterval(updateres, 60000);
+	}
+	function loading(){
+		setplaychop();
+		document.getElementById("loadingbar").style.transitionDuration= "5s";
+    	document.getElementById("loadingbar").style.width="250px";
+		woodloading();
+    }
+	function woodloading(){
+    	set = setTimeout(getwood,4000);
+    }
+	function getwood(){
+    alert("You got 100 Wood");
+	wood += 100;
+	document.getElementById("wood").value=wood;
+	document.getElementById("loadingbar").style.transitionDuration= "2s";
+	document.getElementById("loadingbar").style.width="10px";
+    }
+	function update(){
+		var sawdaily = "Wood Production Rate "
+		var sec = "/minute"
+		document.getElementById("saw_mill_val").value=saw_mill_val; 
+		document.getElementById("saw_mill_pro").innerHTML = sawdaily + woodproduct + sec;
+	}
+	function updateres(){
+		wood += woodproduct;
+		document.getElementById("wood").value = wood;
+	}
+</script>
+</body>
+</html>
